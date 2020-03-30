@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: wakalni
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: med.hedi.boussada
+Implementation-Vendor-Id: com.biservices.wakalni
+Build-Jdk: 1.8.0_231
+Implementation-URL: http://projects.spring.io/spring-boot/wakalni/
+Created-By: Maven Integration for Eclipse
+Implementation-Vendor: Pivotal Software, Inc.
+
