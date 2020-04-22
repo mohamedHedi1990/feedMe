@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.biservices.wakalni.wakalni.model.dto.MenuDto;
 import com.biservices.wakalni.wakalni.persistence.entities.Comment;
 import com.biservices.wakalni.wakalni.persistence.entities.Menu;
 import com.biservices.wakalni.wakalni.persistence.entities.MenuCategory;
@@ -34,9 +35,13 @@ public class MenuService {
 		return menuRepo.findOne(id);
 	}
 
-	public List<Menu> findAllMenusForRestaurant(Long restaurantId) {
+	public List<MenuDto> findAllMenusForRestaurant(Long restaurantId) {
 		Restaurant resto = restoRepo.findOne(restaurantId);
-		return menuRepo.findByRestaurant(resto);
+		List<MenuDto> menus = new ArrayList<MenuDto>();
+		menuRepo.findByRestaurant(resto).stream().forEach(menu -> {
+			menus.add(new MenuDto(menu));
+		});
+		return menus;
 	}
 
 	public List<Menu> findAllMenusForMenuCategory(Long menuCategoryId) {
@@ -53,14 +58,14 @@ public class MenuService {
 
 	}
 
-	public List<Menu> getMenusForRestaurant(Long restaurantId) {
+	/*public List<MenuDto> getMenusForRestaurant(Long restaurantId) {
 		Restaurant resto = restoRepo.findOne(restaurantId);
 		if (resto != null) {
 			List<Menu> menus = menuRepo.findByRestaurant(resto);
 			return menus;
 		}
 		return null;
-	}
+	}*/
 
 	public void deleteMenu(Long menuId) {
 		Menu menu = menuRepo.findOne(menuId);
@@ -84,7 +89,7 @@ public class MenuService {
 	
 	public List<Menu> getFlop10Menus() {
 		// TODO Auto-generated method stub
-		return menuRepo.findTop10ByOrderByLikeNumberDesc();
+		return menuRepo.findTop10ByOrderByDontLikeNumberDesc();
 	}
 
 	public Menu addCommentForMenu(Comment comment, Long menuId, Long userId) {
@@ -99,5 +104,15 @@ public class MenuService {
 			return menuRepo.save(menu);
 		}
 		return null;
+	}
+
+	public List<MenuDto> findAllMenusForRestaurantAndCategory(Long restaurantId, Long menuCategoryId) {
+		Restaurant resto = restoRepo.findOne(restaurantId);
+		MenuCategory category = menuCategoryRepo.findOne(menuCategoryId);
+		List<MenuDto> menus = new ArrayList<MenuDto>();
+		menuRepo.findByRestaurantAndMenuCategory(resto, category).stream().forEach(menu -> {
+			menus.add(new MenuDto(menu));
+		});
+		return menus;
 	}
 }

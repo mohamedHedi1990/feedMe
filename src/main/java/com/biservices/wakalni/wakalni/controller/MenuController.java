@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.biservices.wakalni.wakalni.model.dto.MenuDto;
 import com.biservices.wakalni.wakalni.persistence.entities.Comment;
 import com.biservices.wakalni.wakalni.persistence.entities.Menu;
 import com.biservices.wakalni.wakalni.services.DBFileStorageService;
@@ -74,9 +75,22 @@ public class MenuController {
 	
 	@CrossOrigin
 	@GetMapping("for_restaurant/{restaurantId}")
-	public List<Menu> getMenusForRestaurant(@PathVariable("restaurantId") Long restaurantId) {
+	public List<MenuDto> getMenusForRestaurant(@PathVariable("restaurantId") Long restaurantId) {
 		try {
-			return menuService.getMenusForRestaurant(restaurantId);
+			return menuService.findAllMenusForRestaurant(restaurantId);
+		} catch (Exception e) {
+			System.out.println("Internal error was occured when trying to save the informations of this new menu \n");
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	@CrossOrigin
+	@GetMapping("for_restaurant/{restaurantId}/{menuCategoryId}")
+	public List<MenuDto> getMenusForRestaurantAndCategory(@PathVariable("restaurantId") Long restaurantId,
+			@PathVariable("menuCategoryId") Long menuCategoryId) {
+		try {
+			return menuService.findAllMenusForRestaurantAndCategory(restaurantId, menuCategoryId);
 		} catch (Exception e) {
 			System.out.println("Internal error was occured when trying to save the informations of this new menu \n");
 			e.printStackTrace();

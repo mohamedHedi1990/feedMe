@@ -37,6 +37,8 @@ public class Menu {
 	private String pictureUrl;
 	private Integer likeNumber;
 	private Integer dontLikeNumber;
+	private double score;
+	private double starsAverage;
 	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Africa/Tunis")
 	@Temporal(TemporalType.TIMESTAMP)

@@ -12,6 +12,7 @@ import com.biservices.wakalni.wakalni.persistence.entities.Restaurant;
 public interface MenuRepository extends JpaRepository<Menu, Long> {
 	List<Menu> findByRestaurant (Restaurant resto);
 	List<Menu> findByMenuCategory (MenuCategory menuCategory);
+	List<Menu> findByRestaurantAndMenuCategory (Restaurant resto, MenuCategory menuCategory);
 	List<Menu> findTop10ByOrderByLikeNumberDesc();
 	List<Menu> findTop10ByOrderByDontLikeNumberDesc();
 	

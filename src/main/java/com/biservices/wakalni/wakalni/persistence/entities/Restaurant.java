@@ -44,6 +44,8 @@ public class Restaurant {
 	private Date beginVipDate;
 	private String pictureUrl;
 	
+	private String popularMenus;
+	
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Africa/Tunis")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;

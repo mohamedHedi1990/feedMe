@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.biservices.wakalni.wakalni.model.dto.MenuCategoryDto;
 import com.biservices.wakalni.wakalni.persistence.entities.MenuCategory;
 import com.biservices.wakalni.wakalni.services.DBFileStorageService;
 import com.biservices.wakalni.wakalni.services.MenuCategoryService;
@@ -46,7 +47,7 @@ public class MenuCategoryController {
 	
 	@CrossOrigin
 	@GetMapping("/{restaurantId}")
-	public List<MenuCategory> getAllMenuCategoriesForRestaurant(@PathVariable("restaurantId") Long restaurantId) {
+	public List<MenuCategoryDto> getAllMenuCategoriesForRestaurant(@PathVariable("restaurantId") Long restaurantId) {
 		try {
 			return menuCategoryService.getAllMenuCategoriesForRestaurant(restaurantId);
 		}  catch (Exception e) {

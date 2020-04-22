@@ -1,10 +1,12 @@
 package com.biservices.wakalni.wakalni.services;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.biservices.wakalni.wakalni.model.dto.MenuCategoryDto;
 import com.biservices.wakalni.wakalni.persistence.entities.MenuCategory;
 import com.biservices.wakalni.wakalni.persistence.entities.Restaurant;
 import com.biservices.wakalni.wakalni.persistence.repositories.MenuCategoryRepository;
@@ -29,9 +31,13 @@ public class MenuCategoryService {
 		return menuCategoryRepo.save(menuCategory);
 	}
 
-	public List<MenuCategory> getAllMenuCategoriesForRestaurant(Long restaurantId) {
+	public List<MenuCategoryDto> getAllMenuCategoriesForRestaurant(Long restaurantId) {
 		Restaurant resto = restoRepo.findOne(restaurantId);
-		return menuCategoryRepo.findByRestaurant(resto);
+		List<MenuCategoryDto> categories = new ArrayList<MenuCategoryDto>();
+		menuCategoryRepo.findByRestaurant(resto).stream().forEach(menuCategory -> {
+			categories.add(new MenuCategoryDto(menuCategory));
+		});
+		return categories;
 	}
 
 	public void deleteMenuCategory(Long menuCategoryId) {

@@ -34,7 +34,7 @@ public class Application implements CommandLineRunner  {
 private UserRepository userRepo;
 	public static void main(String args[]) {
 		SpringApplication.run(Application.class, args);
-		System.out.println("Feed Me server was successufully started");
+		System.out.println("Feed Me - Version 2 - server was successufully started");
 	}
 
 	@Override
