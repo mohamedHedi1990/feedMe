@@ -34,6 +34,10 @@ public class MenuService {
 	public Menu getMenuById(Long id) {
 		return menuRepo.findOne(id);
 	}
+	
+	public MenuDto getMenuDtoById(Long id) {
+		return new MenuDto(menuRepo.findOne(id));
+	}
 
 	public List<MenuDto> findAllMenusForRestaurant(Long restaurantId) {
 		Restaurant resto = restoRepo.findOne(restaurantId);

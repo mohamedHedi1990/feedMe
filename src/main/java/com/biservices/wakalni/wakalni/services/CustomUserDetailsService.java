@@ -33,9 +33,9 @@ public class CustomUserDetailsService {
 		    return builder.build();
 	}*/
 	
-	/*public PlatformUser loadUserByUsernameAndPassword(String username, String password) throws UsernameNotFoundException {
+	public PlatformUser loadUserByUsernameAndPassword(String username, String password) {
 		return userRepo.findByUsernameAndPassword(username, password);
-	}*/
+	}
 	
 	public List<PlatformUser >findAllUsers () {
 		return userRepo.findAll();

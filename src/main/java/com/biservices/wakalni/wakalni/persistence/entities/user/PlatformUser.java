@@ -25,13 +25,16 @@ public class PlatformUser {
 	private Long id;
 	
 	private String email;
-	
+		
 	@Transient
 	private String authorization;
 	
 	private String password;
 	private String username;
 	private String pictureUrl;
+	
+	private String firstName;
+	private String lastName;
 	
 	@OneToMany(fetch = FetchType.EAGER)
 	List<Role> roles;

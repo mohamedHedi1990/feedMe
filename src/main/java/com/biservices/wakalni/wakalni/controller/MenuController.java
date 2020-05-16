@@ -34,9 +34,9 @@ public class MenuController {
 	@CrossOrigin
 	@GetMapping("/{menuId}")
 	//@PreAuthorize("hasRole('ROLE_ADMIN')")
-	public Menu getMenuById(@PathVariable("menuId") Long menuId) {
+	public MenuDto getMenuById(@PathVariable("menuId") Long menuId) {
 
-		return menuService.getMenuById(menuId);
+		return menuService.getMenuDtoById(menuId);
 	}
 	
 	

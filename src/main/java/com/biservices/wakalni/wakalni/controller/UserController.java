@@ -29,10 +29,10 @@ public class UserController {
 	@Autowired
 	private DBFileStorageService DBFileStorageService;
 
-	/*@CrossOrigin
+	@CrossOrigin
 	@GetMapping("login/{userName}/{password}")
 	public PlatformUser getReport(@PathVariable("userName") String userName,
-			@PathVariable("userName") String password) {
+			@PathVariable("password") String password) {
 
 		PlatformUser user = (PlatformUser) userService.loadUserByUsernameAndPassword(userName, password);
 		String loginPasswordString = user.getUsername() + ":" + user.getPassword();
@@ -41,7 +41,7 @@ public class UserController {
 		user.setAuthorization(encodingString);
 		return user;
 	}
-	*/
+
 	@CrossOrigin
 	@PostMapping()
 	public PlatformUser saveNewUser(@RequestBody PlatformUser user, @RequestParam("file") MultipartFile file) {

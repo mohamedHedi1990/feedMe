@@ -54,6 +54,8 @@ public class Menu {
 	@ManyToOne
 	private MenuCategory menuCategory;
 	
+	private Double estimatedPreparationTime;
+	
 	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
 	private List<Comment> comments;
 	
